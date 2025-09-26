@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a75767fa96eb45eb8671ded9d0f66e18" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="RepairModel.Equipment" Width="1.5" PointX="2" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairModel.Remonts" Width="1.5" PointX="7.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairModel.Sotrudniki" Width="1.5" PointX="7.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairModel.StoreRegistor" Width="1.5" PointX="10.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairModel.Users" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairModel.Work" Width="1.5" PointX="4.875" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepairModel.Zeh" Width="1.5" PointX="2" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="RepairModel.FK__Equipment__ID_Ze__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairModel.FK__Work__ID_Equipme__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairModel.FK_Remonts_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairModel.FK_Remonts_Sotrudniki" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairModel.FK_Remonts_Work" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairModel.FK_Remonts_Zeh" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairModel.FK__Sotrudnik__ID_Ze__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="RepairModel.FK_StoreRegistor_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RepairModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID_Equipment" />
+          </Key>
+          <Property Name="ID_Equipment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Zeh" Type="int" Nullable="false" />
+          <Property Name="NameEquipment" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TypeEquipment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResoursTime" Type="int" Nullable="false" />
+          <Property Name="Sostoyanie" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Remonts">
+          <Key>
+            <PropertyRef Name="ID_Remont" />
+          </Key>
+          <Property Name="ID_Remont" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Equipment" Type="int" Nullable="false" />
+          <Property Name="ID_Work" Type="int" Nullable="false" />
+          <Property Name="ID_Sotrudnik" Type="int" Nullable="false" />
+          <Property Name="ID_Zeh" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="ID_Sotrudnik" />
+          </Key>
+          <Property Name="ID_Sotrudnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Zeh" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Doljnost" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Razryad" Type="int" Nullable="false" />
+          <Property Name="Oklad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PhoneSotrudnik" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Data_priema" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreRegistor">
+          <Key>
+            <PropertyRef Name="ID_Log" />
+          </Key>
+          <Property Name="ID_Log" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="Operation" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StatusLog" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NamePC" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateOperation" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rights" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="ID_Work" />
+          </Key>
+          <Property Name="ID_Work" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Equipment" Type="int" Nullable="false" />
+          <Property Name="NameWork" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TypeWork" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NormHours" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zeh">
+          <Key>
+            <PropertyRef Name="ID_Zeh" />
+          </Key>
+          <Property Name="ID_Zeh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameZeh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneZeh" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Equipment__ID_Ze__3B75D760">
+          <End Role="Zeh" Type="Self.Zeh" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zeh">
+              <PropertyRef Name="ID_Zeh" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="ID_Zeh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__ID_Ze__38996AB5">
+          <End Role="Zeh" Type="Self.Zeh" Multiplicity="1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zeh">
+              <PropertyRef Name="ID_Zeh" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="ID_Zeh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Work__ID_Equipme__3E52440B">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Work" Type="Self.Work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID_Equipment" />
+            </Principal>
+            <Dependent Role="Work">
+              <PropertyRef Name="ID_Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonts_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Remonts" Type="Self.Remonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID_Equipment" />
+            </Principal>
+            <Dependent Role="Remonts">
+              <PropertyRef Name="ID_Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonts_Sotrudniki">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+          <End Role="Remonts" Type="Self.Remonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="ID_Sotrudnik" />
+            </Principal>
+            <Dependent Role="Remonts">
+              <PropertyRef Name="ID_Sotrudnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonts_Work">
+          <End Role="Work" Type="Self.Work" Multiplicity="1" />
+          <End Role="Remonts" Type="Self.Remonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Work">
+              <PropertyRef Name="ID_Work" />
+            </Principal>
+            <Dependent Role="Remonts">
+              <PropertyRef Name="ID_Work" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonts_Zeh">
+          <End Role="Zeh" Type="Self.Zeh" Multiplicity="1" />
+          <End Role="Remonts" Type="Self.Remonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zeh">
+              <PropertyRef Name="ID_Zeh" />
+            </Principal>
+            <Dependent Role="Remonts">
+              <PropertyRef Name="ID_Zeh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreRegistor_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="StoreRegistor" Type="Self.StoreRegistor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="StoreRegistor">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RepairModelContainer">
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remonts" EntityType="Self.Remonts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreRegistor" EntityType="Self.StoreRegistor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Work" EntityType="Self.Work" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zeh" EntityType="Self.Zeh" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Equipment__ID_Ze__3B75D760" Association="Self.FK__Equipment__ID_Ze__3B75D760">
+            <End Role="Zeh" EntitySet="Zeh" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__ID_Ze__38996AB5" Association="Self.FK__Sotrudnik__ID_Ze__38996AB5">
+            <End Role="Zeh" EntitySet="Zeh" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Work__ID_Equipme__3E52440B" Association="Self.FK__Work__ID_Equipme__3E52440B">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Work" EntitySet="Work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonts_Equipment" Association="Self.FK_Remonts_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Remonts" EntitySet="Remonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonts_Sotrudniki" Association="Self.FK_Remonts_Sotrudniki">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Remonts" EntitySet="Remonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonts_Work" Association="Self.FK_Remonts_Work">
+            <End Role="Work" EntitySet="Work" />
+            <End Role="Remonts" EntitySet="Remonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonts_Zeh" Association="Self.FK_Remonts_Zeh">
+            <End Role="Zeh" EntitySet="Zeh" />
+            <End Role="Remonts" EntitySet="Remonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreRegistor_Users" Association="Self.FK_StoreRegistor_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="StoreRegistor" EntitySet="StoreRegistor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RepairModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID_Equipment" />
+          </Key>
+          <Property Name="ID_Equipment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Zeh" Type="Int32" Nullable="false" />
+          <Property Name="NameEquipment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeEquipment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResoursTime" Type="Int32" Nullable="false" />
+          <Property Name="Sostoyanie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Zeh" Relationship="Self.FK__Equipment__ID_Ze__3B75D760" FromRole="Equipment" ToRole="Zeh" />
+          <NavigationProperty Name="Work" Relationship="Self.FK__Work__ID_Equipme__3E52440B" FromRole="Equipment" ToRole="Work" />
+          <NavigationProperty Name="Remonts" Relationship="Self.FK_Remonts_Equipment" FromRole="Equipment" ToRole="Remonts" />
+        </EntityType>
+        <EntityType Name="Remonts">
+          <Key>
+            <PropertyRef Name="ID_Remont" />
+          </Key>
+          <Property Name="ID_Remont" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Equipment" Type="Int32" Nullable="false" />
+          <Property Name="ID_Work" Type="Int32" Nullable="false" />
+          <Property Name="ID_Sotrudnik" Type="Int32" Nullable="false" />
+          <Property Name="ID_Zeh" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Remonts_Equipment" FromRole="Remonts" ToRole="Equipment" />
+          <NavigationProperty Name="Sotrudniki" Relationship="Self.FK_Remonts_Sotrudniki" FromRole="Remonts" ToRole="Sotrudniki" />
+          <NavigationProperty Name="Work" Relationship="Self.FK_Remonts_Work" FromRole="Remonts" ToRole="Work" />
+          <NavigationProperty Name="Zeh" Relationship="Self.FK_Remonts_Zeh" FromRole="Remonts" ToRole="Zeh" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="ID_Sotrudnik" />
+          </Key>
+          <Property Name="ID_Sotrudnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Zeh" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Doljnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Razryad" Type="Int32" Nullable="false" />
+          <Property Name="Oklad" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PhoneSotrudnik" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Data_priema" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Remonts" Relationship="Self.FK_Remonts_Sotrudniki" FromRole="Sotrudniki" ToRole="Remonts" />
+          <NavigationProperty Name="Zeh" Relationship="Self.FK__Sotrudnik__ID_Ze__38996AB5" FromRole="Sotrudniki" ToRole="Zeh" />
+        </EntityType>
+        <EntityType Name="StoreRegistor">
+          <Key>
+            <PropertyRef Name="ID_Log" />
+          </Key>
+          <Property Name="ID_Log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="Operation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusLog" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NamePC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOperation" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_StoreRegistor_Users" FromRole="StoreRegistor" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rights" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="StoreRegistor" Relationship="Self.FK_StoreRegistor_Users" FromRole="Users" ToRole="StoreRegistor" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="ID_Work" />
+          </Key>
+          <Property Name="ID_Work" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Equipment" Type="Int32" Nullable="false" />
+          <Property Name="NameWork" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeWork" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NormHours" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK__Work__ID_Equipme__3E52440B" FromRole="Work" ToRole="Equipment" />
+          <NavigationProperty Name="Remonts" Relationship="Self.FK_Remonts_Work" FromRole="Work" ToRole="Remonts" />
+        </EntityType>
+        <EntityType Name="Zeh">
+          <Key>
+            <PropertyRef Name="ID_Zeh" />
+          </Key>
+          <Property Name="ID_Zeh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameZeh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneZeh" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK__Equipment__ID_Ze__3B75D760" FromRole="Zeh" ToRole="Equipment" />
+          <NavigationProperty Name="Remonts" Relationship="Self.FK_Remonts_Zeh" FromRole="Zeh" ToRole="Remonts" />
+          <NavigationProperty Name="Sotrudniki" Relationship="Self.FK__Sotrudnik__ID_Ze__38996AB5" FromRole="Zeh" ToRole="Sotrudniki" />
+        </EntityType>
+        <Association Name="FK__Equipment__ID_Ze__3B75D760">
+          <End Role="Zeh" Type="Self.Zeh" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zeh">
+              <PropertyRef Name="ID_Zeh" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="ID_Zeh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Work__ID_Equipme__3E52440B">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Work" Type="Self.Work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID_Equipment" />
+            </Principal>
+            <Dependent Role="Work">
+              <PropertyRef Name="ID_Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonts_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Remonts" Type="Self.Remonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID_Equipment" />
+            </Principal>
+            <Dependent Role="Remonts">
+              <PropertyRef Name="ID_Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonts_Sotrudniki">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+          <End Role="Remonts" Type="Self.Remonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="ID_Sotrudnik" />
+            </Principal>
+            <Dependent Role="Remonts">
+              <PropertyRef Name="ID_Sotrudnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonts_Work">
+          <End Role="Work" Type="Self.Work" Multiplicity="1" />
+          <End Role="Remonts" Type="Self.Remonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Work">
+              <PropertyRef Name="ID_Work" />
+            </Principal>
+            <Dependent Role="Remonts">
+              <PropertyRef Name="ID_Work" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonts_Zeh">
+          <End Role="Zeh" Type="Self.Zeh" Multiplicity="1" />
+          <End Role="Remonts" Type="Self.Remonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zeh">
+              <PropertyRef Name="ID_Zeh" />
+            </Principal>
+            <Dependent Role="Remonts">
+              <PropertyRef Name="ID_Zeh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__ID_Ze__38996AB5">
+          <End Role="Zeh" Type="Self.Zeh" Multiplicity="1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zeh">
+              <PropertyRef Name="ID_Zeh" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="ID_Zeh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreRegistor_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="StoreRegistor" Type="Self.StoreRegistor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="StoreRegistor">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RepairEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Remonts" EntityType="Self.Remonts" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" />
+          <EntitySet Name="StoreRegistor" EntityType="Self.StoreRegistor" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Work" EntityType="Self.Work" />
+          <EntitySet Name="Zeh" EntityType="Self.Zeh" />
+          <AssociationSet Name="FK__Equipment__ID_Ze__3B75D760" Association="Self.FK__Equipment__ID_Ze__3B75D760">
+            <End Role="Zeh" EntitySet="Zeh" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Work__ID_Equipme__3E52440B" Association="Self.FK__Work__ID_Equipme__3E52440B">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Work" EntitySet="Work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonts_Equipment" Association="Self.FK_Remonts_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Remonts" EntitySet="Remonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonts_Sotrudniki" Association="Self.FK_Remonts_Sotrudniki">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Remonts" EntitySet="Remonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonts_Work" Association="Self.FK_Remonts_Work">
+            <End Role="Work" EntitySet="Work" />
+            <End Role="Remonts" EntitySet="Remonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonts_Zeh" Association="Self.FK_Remonts_Zeh">
+            <End Role="Zeh" EntitySet="Zeh" />
+            <End Role="Remonts" EntitySet="Remonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__ID_Ze__38996AB5" Association="Self.FK__Sotrudnik__ID_Ze__38996AB5">
+            <End Role="Zeh" EntitySet="Zeh" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreRegistor_Users" Association="Self.FK_StoreRegistor_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="StoreRegistor" EntitySet="StoreRegistor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RepairModelContainer" CdmEntityContainer="RepairEntities">
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="RepairModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="ID_Equipment" ColumnName="ID_Equipment" />
+                <ScalarProperty Name="ID_Zeh" ColumnName="ID_Zeh" />
+                <ScalarProperty Name="NameEquipment" ColumnName="NameEquipment" />
+                <ScalarProperty Name="TypeEquipment" ColumnName="TypeEquipment" />
+                <ScalarProperty Name="ResoursTime" ColumnName="ResoursTime" />
+                <ScalarProperty Name="Sostoyanie" ColumnName="Sostoyanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Remonts">
+            <EntityTypeMapping TypeName="RepairModel.Remonts">
+              <MappingFragment StoreEntitySet="Remonts">
+                <ScalarProperty Name="ID_Remont" ColumnName="ID_Remont" />
+                <ScalarProperty Name="ID_Equipment" ColumnName="ID_Equipment" />
+                <ScalarProperty Name="ID_Work" ColumnName="ID_Work" />
+                <ScalarProperty Name="ID_Sotrudnik" ColumnName="ID_Sotrudnik" />
+                <ScalarProperty Name="ID_Zeh" ColumnName="ID_Zeh" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudniki">
+            <EntityTypeMapping TypeName="RepairModel.Sotrudniki">
+              <MappingFragment StoreEntitySet="Sotrudniki">
+                <ScalarProperty Name="ID_Sotrudnik" ColumnName="ID_Sotrudnik" />
+                <ScalarProperty Name="ID_Zeh" ColumnName="ID_Zeh" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Doljnost" ColumnName="Doljnost" />
+                <ScalarProperty Name="Razryad" ColumnName="Razryad" />
+                <ScalarProperty Name="Oklad" ColumnName="Oklad" />
+                <ScalarProperty Name="PhoneSotrudnik" ColumnName="PhoneSotrudnik" />
+                <ScalarProperty Name="Data_priema" ColumnName="Data_priema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreRegistor">
+            <EntityTypeMapping TypeName="RepairModel.StoreRegistor">
+              <MappingFragment StoreEntitySet="StoreRegistor">
+                <ScalarProperty Name="ID_Log" ColumnName="ID_Log" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="StatusLog" ColumnName="StatusLog" />
+                <ScalarProperty Name="NamePC" ColumnName="NamePC" />
+                <ScalarProperty Name="DateOperation" ColumnName="DateOperation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RepairModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Rights" ColumnName="Rights" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Work">
+            <EntityTypeMapping TypeName="RepairModel.Work">
+              <MappingFragment StoreEntitySet="Work">
+                <ScalarProperty Name="ID_Work" ColumnName="ID_Work" />
+                <ScalarProperty Name="ID_Equipment" ColumnName="ID_Equipment" />
+                <ScalarProperty Name="NameWork" ColumnName="NameWork" />
+                <ScalarProperty Name="TypeWork" ColumnName="TypeWork" />
+                <ScalarProperty Name="NormHours" ColumnName="NormHours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zeh">
+            <EntityTypeMapping TypeName="RepairModel.Zeh">
+              <MappingFragment StoreEntitySet="Zeh">
+                <ScalarProperty Name="ID_Zeh" ColumnName="ID_Zeh" />
+                <ScalarProperty Name="NameZeh" ColumnName="NameZeh" />
+                <ScalarProperty Name="PhoneZeh" ColumnName="PhoneZeh" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\4kurs\\itog\\kursach\\AvioRepair\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8745316C-17E6-4C91-94C6-A41FDA889D2A}|AvioRepair\\AvioRepair.csproj|g:\\4kurs\\itog\\kursach\\aviorepair\\aviorepair\\pages\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8745316C-17E6-4C91-94C6-A41FDA889D2A}|AvioRepair\\AvioRepair.csproj|solutionrelative:aviorepair\\pages\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8745316C-17E6-4C91-94C6-A41FDA889D2A}|AvioRepair\\AvioRepair.csproj|G:\\4kurs\\itog\\kursach\\AvioRepair\\aviorepair\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8745316C-17E6-4C91-94C6-A41FDA889D2A}|AvioRepair\\AvioRepair.csproj|solutionrelative:aviorepair\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "G:\\4kurs\\itog\\kursach\\AvioRepair\\AvioRepair\\Pages\\MainPage.xaml",
+              "RelativeDocumentMoniker": "AvioRepair\\Pages\\MainPage.xaml",
+              "ToolTip": "G:\\4kurs\\itog\\kursach\\AvioRepair\\AvioRepair\\Pages\\MainPage.xaml",
+              "RelativeToolTip": "AvioRepair\\Pages\\MainPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-26T18:05:15.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "G:\\4kurs\\itog\\kursach\\AvioRepair\\AvioRepair\\Pages\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "AvioRepair\\Pages\\LoginPage.xaml",
+              "ToolTip": "G:\\4kurs\\itog\\kursach\\AvioRepair\\AvioRepair\\Pages\\LoginPage.xaml",
+              "RelativeToolTip": "AvioRepair\\Pages\\LoginPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-28T12:31:38.179Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

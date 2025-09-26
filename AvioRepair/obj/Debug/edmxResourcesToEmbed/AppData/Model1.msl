@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище RepairModelContainer" CdmEntityContainer="RepairEntities">
+    <EntitySetMapping Name="Equipment">
+      <EntityTypeMapping TypeName="RepairModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="ID_Equipment" ColumnName="ID_Equipment" />
+          <ScalarProperty Name="ID_Zeh" ColumnName="ID_Zeh" />
+          <ScalarProperty Name="NameEquipment" ColumnName="NameEquipment" />
+          <ScalarProperty Name="TypeEquipment" ColumnName="TypeEquipment" />
+          <ScalarProperty Name="ResoursTime" ColumnName="ResoursTime" />
+          <ScalarProperty Name="Sostoyanie" ColumnName="Sostoyanie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Remonts">
+      <EntityTypeMapping TypeName="RepairModel.Remonts">
+        <MappingFragment StoreEntitySet="Remonts">
+          <ScalarProperty Name="ID_Remont" ColumnName="ID_Remont" />
+          <ScalarProperty Name="ID_Equipment" ColumnName="ID_Equipment" />
+          <ScalarProperty Name="ID_Work" ColumnName="ID_Work" />
+          <ScalarProperty Name="ID_Sotrudnik" ColumnName="ID_Sotrudnik" />
+          <ScalarProperty Name="ID_Zeh" ColumnName="ID_Zeh" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sotrudniki">
+      <EntityTypeMapping TypeName="RepairModel.Sotrudniki">
+        <MappingFragment StoreEntitySet="Sotrudniki">
+          <ScalarProperty Name="ID_Sotrudnik" ColumnName="ID_Sotrudnik" />
+          <ScalarProperty Name="ID_Zeh" ColumnName="ID_Zeh" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Doljnost" ColumnName="Doljnost" />
+          <ScalarProperty Name="Razryad" ColumnName="Razryad" />
+          <ScalarProperty Name="Oklad" ColumnName="Oklad" />
+          <ScalarProperty Name="PhoneSotrudnik" ColumnName="PhoneSotrudnik" />
+          <ScalarProperty Name="Data_priema" ColumnName="Data_priema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoreRegistor">
+      <EntityTypeMapping TypeName="RepairModel.StoreRegistor">
+        <MappingFragment StoreEntitySet="StoreRegistor">
+          <ScalarProperty Name="ID_Log" ColumnName="ID_Log" />
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+          <ScalarProperty Name="Operation" ColumnName="Operation" />
+          <ScalarProperty Name="StatusLog" ColumnName="StatusLog" />
+          <ScalarProperty Name="NamePC" ColumnName="NamePC" />
+          <ScalarProperty Name="DateOperation" ColumnName="DateOperation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RepairModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Rights" ColumnName="Rights" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Work">
+      <EntityTypeMapping TypeName="RepairModel.Work">
+        <MappingFragment StoreEntitySet="Work">
+          <ScalarProperty Name="ID_Work" ColumnName="ID_Work" />
+          <ScalarProperty Name="ID_Equipment" ColumnName="ID_Equipment" />
+          <ScalarProperty Name="NameWork" ColumnName="NameWork" />
+          <ScalarProperty Name="TypeWork" ColumnName="TypeWork" />
+          <ScalarProperty Name="NormHours" ColumnName="NormHours" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zeh">
+      <EntityTypeMapping TypeName="RepairModel.Zeh">
+        <MappingFragment StoreEntitySet="Zeh">
+          <ScalarProperty Name="ID_Zeh" ColumnName="ID_Zeh" />
+          <ScalarProperty Name="NameZeh" ColumnName="NameZeh" />
+          <ScalarProperty Name="PhoneZeh" ColumnName="PhoneZeh" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

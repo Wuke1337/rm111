@@ -1,0 +1,99 @@
+﻿<Page x:Class="AvioRepair.Pages.Otcheti.ZPSotrudniki"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AvioRepair.Pages.Otcheti"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ZPSotrudniki">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="#eaeaea">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#0077c2" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="NazadBtn" Content="Назад" Margin="10,0,20,0" Height="30" Width="70" Click="NazadBtn_Click"
+                        Background="LightSteelBlue" Foreground="#0077c2" FontSize="14" FontWeight="Bold"
+                        VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0"/>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <Image Source="/Images/logo.png" Width="100" Height="60" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Text="711 Авиационный ремонтный завод" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Foreground="#ffec33" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid Grid.Column="2" Width="70"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="10, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="ReportBtn" Content="Сформировать отчет ЗП" Margin="0,0,10,0" Height="30" Width="190" Click="ReportBtn_Click" Background="LightSteelBlue" Foreground="#0077c2" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Images/logo2.png" Stretch="UniformToFill" Opacity="0.1"/>
+                </Grid.Background>
+                <StackPanel Margin="10">
+                    <DataGrid x:Name="SotrudnikiDG" HorizontalContentAlignment="Stretch" AutoGenerateColumns="False" IsReadOnly="True">
+                        <!-- Определяем общий стиль для заголовков столбцов -->
+                        <DataGrid.Resources>
+                            <Style x:Key="ColumnHeaderStyle" TargetType="DataGridColumnHeader">
+                                <Setter Property="Foreground" Value="#0077c2"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                            <!-- Добавляем стиль для ячеек -->
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Foreground" Value="#0077c2"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                        </DataGrid.Resources>
+
+                        <DataGrid.Columns>
+                            <!-- Применяем стиль к каждой колонке -->
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+
+                            <DataGridTextColumn Header="Должность" Binding="{Binding Doljnost}" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+
+                            <DataGridTextColumn Header="Оклад" Binding="{Binding Oklad}" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+                            
+                            <DataGridTextColumn Header="Разряд" Binding="{Binding Razryad}" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+
+                            <DataGridTextColumn Header="Общее время ремонта" Binding="{Binding SummaVremeni}" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+
+                            <DataGridTextColumn Header="Норма времени" Binding="{Binding NormHours}" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+
+                            <DataGridTextColumn Header="Зарплата сотрудника" Binding="{Binding ZPSotrudnika, StringFormat=0.00}" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Page>
